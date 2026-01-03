@@ -1,6 +1,7 @@
 # Useful commands
 
 
+### Space 
 Check disk space:
 ```
 df -g
@@ -16,13 +17,24 @@ Check repository space
 du . --max-depth=1 -h
 ```
 
-Commandes utiles Zabbix
+Dossiers / fichiers volumineux
 ```
-firewall-cmd --permanent --add-port=1500/tcp --add-source=<IP>:<PORT>
+du -a | sort -nr | head -n 5
+du -hs /* | sort -rh | head -5
+du -Sh | sort -rh | head -5
+```
+
+### Zabbix
+```
+firewall-cmd --permanent --add-port=10050/tcp--add-source=<IP>:<PORT>
 firewall-cmd --reload
+```
 
+```
 zabbix_agentd -V
+```
 
+```
 su -s /bin/bash zabbix
 ```
 
@@ -34,6 +46,7 @@ journalctl --vacuum-size=1G
 journalctl --verify
 ```
 
+### Certificate
 Convert CER to CRT
 ```
 openssl x509 -inform PEM -in certificate.cer -out certificate.crt
@@ -44,44 +57,77 @@ Read information from PEM
 openssl x509 -text -in cert.pem
 ```
 
+### NMAP
 Scan a host & get all algos used by SSH
 ```
 nmap --script ssh2-enum-algos -sV -p <PORT> <IP>
 ```
 
+### Mail
 Test sendmail
 ```
 echo "Subject: sendmail test" | sendmail -v <MAIL>
 ```
 
-Send a command from ansible
-```
-ansible groupe -a "cmd" -u ansibleadmin --become
-```
-
+### TCPDUMP
 Capture network traffic
 ```
 tcpdump -i any host <IP> -vvvvv -w /tmp/capture.pcap
 ```
 
-Trouver un mot dans le repertoire courant
+### YUM / DNF
+Lock package
 ```
 yum -y install yum-plugin-versionlock
 yum versionlock <PACKAGE>
 ```
 
+### Files manipulation
 Find a work in the current repo
 ```
 grep -nr '*word*' .
 ```
 
+Find user with blank password
+```
+getent shadow | grep '^[^:]*:.\?:' | cut -d: -f1
+```
+
+### SCP 
 Get a file with scp
 ```
 scp -P <PORT> <USERNAME>@<HOSTNAME>:<PATH_DEST> <PATH_SRC>
 ```
 
-Commandes utiles history
+### History
 ```
 history -d <LINE>
-History -w
+```
+
+```
+history -w
+```
+
+```
+cat /dev/null > ~/.bash_history && history -c && exit
+```
+
+### TAR command
+
+Untar
+```
+tar -xvzf <file>.tat.gz
+```
+
+
+### Ansible
+
+Create role
+```
+ansible-galaxy role init 
+```
+
+Send a command from ansible
+```
+ansible groupe -a "cmd" -u ansibleadmin --become
 ```
