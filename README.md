@@ -149,5 +149,5 @@ ansible-galaxy role init
 
 Send a command from ansible
 ```
-ansible groupe -a "cmd" -u ansibleadmin --become
+ansible groupe -a "cmd" -u mon_user_ansible --become
 ```
