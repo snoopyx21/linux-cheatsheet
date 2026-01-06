@@ -93,6 +93,26 @@ Find user with blank password
 getent shadow | grep '^[^:]*:.\?:' | cut -d: -f1
 ```
 
+Find empty files
+```
+find ~ -type f -empty
+```
+
+List just directories
+```
+find ~/Public -type d
+```
+
+Find by content
+```
+find ~/Documents/ -name "*txt" -exec grep -Hi content {} \;
+```
+
+Find a single file by approximate name
+```
+find / -iname "*foo*txt" 2>/dev/null
+```
+
 ### SCP 
 Get a file with scp
 ```
