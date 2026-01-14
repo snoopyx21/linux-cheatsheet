@@ -47,14 +47,20 @@ journalctl --verify
 ```
 
 ### Certificate
+Convert CRT to PEM
+```
+openssl x509 -in <filename>.crt -out <filename>.der -outform DER
+openssl x509 -in <filename>.der -inform DER -out <filename>.pem -outform PEM
+```
+
 Convert CER to CRT
 ```
-openssl x509 -inform PEM -in certificate.cer -out certificate.crt
+openssl x509 -inform PEM -in <filename>.cer -out <filename>.crt
 ```
 
 Read information from PEM
 ```
-openssl x509 -text -in cert.pem
+openssl x509 -text -in <filename>.pem
 ```
 
 ### NMAP
