@@ -94,6 +94,11 @@ Find a work in the current repo
 grep -nr '*word*' .
 ```
 
+List directories with find
+```
+find . -ls
+```
+
 Find user with blank password
 ```
 getent shadow | grep '^[^:]*:.\?:' | cut -d: -f1
@@ -156,4 +161,16 @@ ansible-galaxy role init
 Send a command from ansible
 ```
 ansible groupe -a "cmd" -u mon_user_ansible --become
+```
+
+
+### Monitoring commands
+Get status from specific process
+```
+htop -p pid,pid,pid
+```
+
+Get IO from device files
+```
+iostat -xN --human 5
 ```
